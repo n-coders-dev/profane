@@ -19,8 +19,8 @@
         "illuminate/database": "~4"
     },
     "autoload": {
-        "psr-0": {
-            "Rtablada\\Profane": "src/"
+        "psr-4": {
+            "Rtablada\\Profane": "src/Rtablada/Profane/"
         }
     },
     "minimum-stability": "dev",
