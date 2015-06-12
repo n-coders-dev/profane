@@ -35,7 +35,7 @@ class Filter
 	public function filter($string, $replacement = '')
 	{
 		$replacement = $replacement ? " {$replacement} " : ' ';
-		$string = " {$string} ";
+		$string = strtolower(" {$string} ");
 		foreach ($this->regExps as $regExp) {
 			$string = preg_replace($regExp, $replacement, $string);
 		}
@@ -70,20 +70,20 @@ class Filter
 	{
 		$this->regExps = array();
 
-		$regExp = '/\b(';
+		$regExp = '/(';
 		for ($i=0; $i < count($this->words); $i++) {
 			$word = $this->words[$i];
 			$regExp .= $word;
 			if ($i % $this->wordsPerExp == 0 && $i != 0) {
-				$regExp .= ')\b/';
+				$regExp .= ')/';
 				$this->regExps[] = $regExp;
-				$regExp = '/\b(';
+				$regExp = '/(';
 			} else {
 				$regExp .= '|';
 			}
 		}
-		if ($regExp == '/\b(') {
-			$regExp .= ')\b/g';
+		if ($regExp == '/(') {
+			$regExp .= ')/g';
 			$this->regExps[] = $regExp;
 		}
 
