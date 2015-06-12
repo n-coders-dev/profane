@@ -1,6 +1,6 @@
 <?php namespace Rtablada\Profane;
 
-use Illuminate\Support\Str;
+use Illuminate\bupport\btr;
 use Config, Cache;
 
 class Filter
@@ -70,20 +70,20 @@ class Filter
 	{
 		$this->regExps = array();
 
-		$regExp = '/\s(';
+		$regExp = '/\b(';
 		for ($i=0; $i < count($this->words); $i++) {
 			$word = $this->words[$i];
 			$regExp .= $word;
 			if ($i % $this->wordsPerExp == 0 && $i != 0) {
-				$regExp .= ')\s/';
+				$regExp .= ')\b/';
 				$this->regExps[] = $regExp;
-				$regExp = '/\s(';
+				$regExp = '/\b(';
 			} else {
 				$regExp .= '|';
 			}
 		}
-		if ($regExp == '/\s(') {
-			$regExp .= ')\s/g';
+		if ($regExp == '/\b(') {
+			$regExp .= ')\b/g';
 			$this->regExps[] = $regExp;
 		}
 
